@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+input {
+  padding:10px;
+  background-color: #dcdcdc;
+  border: 2px solid #666;
+  color:#000;
+  text-decoration:none;
+  font-family: 'Helvetica';
+  font-size: 15px;
+}
+
+input[type='button']:hover {
+	color:#FFC;
+}
+
+#clearance{
+	padding:10px;
+  	background-color: #dcdcdc;
+  	border: 2px solid #666;
+  	color:#000;
+  	text-decoration:none;
+  	font-family: 'Helvetica';
+  	font-size: 20px;
+	font-style: bold;
+	margin-top: 25px;
+}
+
+#allbuttons{
+	height: 100px;
+	width: 500px;
+	float: right;
+	margin-top: 150px;
+}
+
+p{
+	font-family: 'Helvetica';
+  	font-size: 15px;
+}
+
+span{ 
+	font-family: 'Helvetica';
+  	font-size: 15px;
+}
+
+input[type='radio']{
+	font-family: 'Helvetica';
+  	font-size: 15px;
+}
+
+label{
+	font-family: 'Helvetica';
+  	font-size: 15px;
+}
+	
+#radiobuttons{
+	height: 200px;
+	width: 150px;
+	float: right;
+	margin-top: 150px;
+}
+	
+

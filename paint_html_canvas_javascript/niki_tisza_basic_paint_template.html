@@ -1,0 +1,126 @@
+<html>
+	<head>
+		<style>
+		canvas
+		{
+		border: 2px solid grey;
+		}
+		</style>
+		<script>
+			// the setup canvas function runs when the document is loaded.
+			
+			var chosenShape= "";
+			var coordinateX;
+			var coordinateY;
+			
+			function setupCanvas() 
+			{
+
+				var canvas =document.getElementById("myCanvas");
+				context = canvas.getContext("2d");
+				canvas.addEventListener("mousedown", doMouseDown, false);
+				
+			}
+			
+			function doMouseDown(event) {
+			coordinateX= event.pageX;
+			coordinateY= event.pageY;
+				if(chosenShape==='circle'){
+					drawCircle(coordinateX, coordinateY)
+					}
+				if(chosenShape==='rectangle'){
+					drawRectangle(coordinateX, coordinateY)
+					}
+				if(chosenShape==='line'){
+					drawLine(coordinateX, coordinateY)
+				}
+			//context.fillRect(coordinateX, coordinateY, 200, 100);
+			//context.fillStyle = 'black';	
+			}
+			
+			function circleDown (){
+				chosenShape='circle';
+			}
+			
+			function rectangleDown (){
+				chosenShape='rectangle';
+			}
+			
+			function lineDown (){
+				chosenShape='line';
+			}
+				
+			function drawCircle(x,y)	
+			{	
+			  context.beginPath();
+			  context.arc(x, y, 75, 100 , Math.PI, false);
+			  //context.fillStyle = 'green';
+			  context.fill();
+			  context.lineWidth = 5;
+			  context.strokeStyle = 'black';
+			  context.stroke();
+
+			}
+			
+			function drawRectangle(x,y){
+				context.beginPath();
+      			context.rect(x, y, 200, 100);
+      			context.fill();
+     			context.lineWidth = 5;
+      			context.strokeStyle = 'black';
+      			context.stroke();
+			}
+					
+			function drawLine(x,y){
+				context.beginPath();
+				context.moveTo(x, y);
+				context.lineTo(x+100, y);
+				context.lineWidth = 5;
+				//context.strokeStyle = '#000000';
+				context.stroke();
+      		} 
+			
+			
+			
+			function red()
+			{
+				context.fillStyle = "red";
+				context.strokeStyle = "red";
+			}
+			
+			function blue()
+			{
+				context.fillStyle = "blue";
+				context.strokeStyle = "blue";
+			}
+			
+			function green()
+			{
+				context.fillStyle = "green";
+				context.strokeStyle = "green";
+			}
+			
+			
+      		function reset(){
+      			context.clearRect(0, 0, 500, 500);
+      		}
+      	
+		</script>
+	</head>
+	
+	<body onload = "setupCanvas();">
+		<canvas id="myCanvas" height='500' width='500'>
+		</canvas>
+		
+		<input type="button" onClick="rectangleDown();" value="Rectangle"></input>
+		<input type="button" onClick="lineDown();" value="Line"></input>
+		<input type="button" onClick="circleDown();" value="Circle"></input>
+		<input type="button" onClick="red();" value="red"></input>
+		<input type="button" onClick="blue();" value="blue"></input>
+		<input type="button" onClick="green();" value="green"></input>
+		<input type="button" onClick="reset();" value="clear"></input>
+		
+		
+	
+	</body>
+</html>

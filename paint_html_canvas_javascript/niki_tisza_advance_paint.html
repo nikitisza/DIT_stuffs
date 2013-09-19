@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        	<title>Paintbox</title>
+            <link rel="stylesheet" type="text/css" href="style.css">
+         <style>
+			canvas{
+				border: 4px solid grey;
+			}
+		</style>
+        
+		<script>
+			// the setup canvas function runs when the document is loaded.
+			
+			var chosenShape= "";
+			var chosenColour= "";
+			var coordinateX;
+			var coordinateY;
+			
+			function setupCanvas() {
+				var canvas =document.getElementById("myCanvas");
+				context = canvas.getContext("2d");
+				canvas.addEventListener("mousedown", doMouseDown, false);
+			}
+			
+			function doMouseDown(event) {
+			coordinateX= event.pageX;
+			coordinateY= event.pageY;
+			context.fillStyle = chosenColour;
+			context.strokeStyle = chosenColour;
+			checkStrokeStatus();
+				if(chosenShape==='circle'){
+					drawCircle(coordinateX, coordinateY)
+					}
+				if(chosenShape==='rectangle'){
+					drawRectangle(coordinateX, coordinateY)
+					}
+				if(chosenShape==='line'){
+					drawLine(coordinateX, coordinateY)
+				}	
+			}
+			
+			function circleDown (){
+				chosenShape='circle';
+				document.getElementById('status').innerHTML=chosenShape;
+			}
+			
+			function rectangleDown (){
+				chosenShape='rectangle';
+				document.getElementById('status').innerHTML=chosenShape;
+			}
+			
+			function lineDown (){
+				chosenShape='line';
+				document.getElementById('status').innerHTML=chosenShape;
+			}
+				
+			function drawCircle(x,y){	
+			  	context.beginPath();
+			  	context.arc(x, y, 75, 100 , Math.PI, false);
+			  	context.fill();
+			  	context.lineWidth = 5;
+			  	context.stroke();
+			}
+			
+			function drawRectangle(x,y){
+				context.beginPath();
+      			context.rect(x, y, 200, 100);
+      			context.fill();
+     			context.lineWidth = 5;
+      			context.stroke();
+			}
+					
+			function drawLine(x,y){
+				context.beginPath();
+				context.moveTo(x, y);
+				context.lineTo(x+100, y);
+				context.lineWidth = 5;
+				context.strokeStyle = chosenColour;
+				context.stroke();
+      		} 
+			
+			function red()
+			{
+				chosenColour = "red";
+				//context.strokeStyle = "red";
+				document.getElementById('colour').innerHTML= chosenColour;
+			}
+			
+			function blue()
+			{
+				chosenColour = "blue";
+				//context.strokeStyle = "blue";
+				document.getElementById('colour').innerHTML= chosenColour;
+			}
+			
+			function green()
+			{
+				chosenColour = "green";
+				//context.strokeStyle = "green";
+				document.getElementById('colour').innerHTML= chosenColour;
+			}
+			
+			function yellow()
+			{
+				chosenColour = "yellow";
+				//context.strokeStyle = "yellow";
+				document.getElementById('colour').innerHTML= chosenColour;
+			}
+			
+			
+			function checkStrokeStatus(){
+				if (document.getElementsByName('stroke')[0].checked){context.strokeStyle = 'black';}
+					
+				if (document.getElementsByName('stroke')[1].checked){context.strokeStyle = 'none';}
+				
+			}
+			
+      		function reset(){
+      			context.clearRect(0, 0, 500, 500);
+      		}
+      	
+		</script>
+	</head>
+	
+	<body onload = "setupCanvas()">
+    <canvas id="myCanvas" height='500' width='500'></canvas>
+  
+    	<div id='allbuttons'>
+		<input type="button" onClick="rectangleDown();" value="Rectangle"></input>
+		<input type="button" onClick="lineDown();" value="Line"></input>
+		<input type="button" onClick="circleDown();" value="Circle"></input>
+		<input type="button" onClick="red();" value="red"></input>
+        <input type="button" onClick="yellow();" value="yellow"></input>
+		<input type="button" onClick="blue();" value="blue"></input>
+		<input type="button" onClick="green();" value="green"></input><br />
+        <input type="button" id="clearance" onClick="reset();" value="CLEAR"></input>
+        </div>
+        
+        <div id='radiobuttons'>
+        <label for="stroke">Stroke: </label><br>
+        <input type="radio" name="stroke" value="yes"> Yes<br>
+    	<input type="radio" name="stroke" value="no" checked> No<br>
+        
+        <p>Status: 
+        <span id='status'></span></p>
+        <p>Colour:
+        <span id='colour'></span></p>
+   		</div>
+	
+	</body>
+</html>
